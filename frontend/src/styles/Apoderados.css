@@ -1,0 +1,165 @@
+.lista-apoderados {
+  display: grid;
+  gap: .5rem;
+  padding: 0;
+}
+
+.lista-apoderados p {
+  margin: 0;
+}
+
+.lista-apoderados .apoderado-item {
+  border: 1px solid #ccc;
+  font-weight: 600;
+  padding: .5rem ;
+  list-style: none;
+  border-radius: var(--list-border-radius);
+}
+
+
+.lista-apoderados .apoderado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.apoderado .apoderado-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.apoderado .apoderado-foto {
+  
+}
+
+.apoderado-foto img {
+  max-height: 50px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.apoderado .nombre-rut {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.apoderado .nombre {
+  font-size: 1.1rem;
+  color: var(--primary-text-color);
+  font-weight: 500;
+}
+
+.apoderado .datos {
+  display: flex;
+  gap: 1rem;
+}
+
+.apoderado .secundario {
+  font-size: .9rem;
+  color: var(--secondary-text-color);
+  font-weight: 100;
+}
+
+.apoderado-detalle {
+  transition: .2s ease all;
+}
+/* 
+.apoderado-detalle .detalle-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+} */
+
+.apoderado-detalle .detalle-data {
+  display: flex;
+  gap: 1rem;
+}
+
+.detalle-data .inscripciones {
+  border-radius: var(--list-border-radius);
+  border: 1px solid #ccc;
+  background-color: rgb(10 32 157);
+  color: var(--t-text-color);
+  max-width: fit-content;
+  padding: .5rem;
+}
+
+.detalle-data .inscripciones h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.detalle-data .inscripciones table {
+  font-size: .9rem;
+  font-weight: 100;
+}
+
+.detalle-data .inscripciones table thead th {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0 1rem 0 0;
+
+}
+
+.detalle-data .inscripciones table th,td{
+}
+
+.detalle-data .inscripciones-table {
+}
+
+.detalle-data .inscripciones .inscripciones-table .inscripcion td {
+  padding: 0 12px 0 0;
+}
+
+.detalle-data .inscripciones .inscripcion .activa {
+  display: block;
+  max-width: 1px;
+  height: 10px;
+  background-color: rgb(31, 162, 31);
+  border-radius: 50%;
+  margin: auto;
+}
+
+.detalle-data .inscripciones .inscripcion .inactiva {
+  padding: 0;
+  display: block;
+  margin: auto;
+  background-color: red;
+  max-width: 1px;
+  border-radius: 50%;
+  height: 10px;
+}
+
+.detalle-data .estudiantes {
+  text-align: center;
+  background-color: purple;
+  padding: .5rem;
+  border-radius: var(--list-border-radius);
+  background-color: rgb(157, 10, 10);
+  color: var(--t-text-color);
+}
+
+.detalle-data .estudiantes .icon {
+  font-size: 3rem;
+}
+
+.detalle-data .data-apoderado {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.visible {
+  display: block;
+}
+
+.no-visible {
+  display: none;
+}
+
+.plan-detalle {
+  display: flex;
+  gap: 1rem;
+}

@@ -1,0 +1,13 @@
+.link-nav {
+  max-width: 100%;
+}
+.link-nav a{
+  text-decoration: none;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  padding: .2rem 0;
+  font-size: 1.5rem;
+}

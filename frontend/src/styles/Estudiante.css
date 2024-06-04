@@ -1,0 +1,43 @@
+.estudiante {
+  display: grid;
+  background-color: green;
+  grid-template-columns: 2fr 1fr;
+  color: white;
+}
+
+.estudiante section {
+  margin: 1rem;
+
+
+}
+
+.estudiante .estudiante-detalle {
+  background-color: rgb(112, 24, 39);
+}
+
+.estudiante-detalle .titulo {
+  max-width: 100%;
+  gap: 1rem;
+  display: flex;
+  overflow: hidden;
+  background-color: red;
+  border-radius: 4px;
+}
+
+.titulo .imagen {
+  max-width: 200px;
+}
+
+.estudiante-detalle .titulo img{
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+
+}
+
+.estudiante aside {
+  background-color: rgb(43, 21, 142);
+}

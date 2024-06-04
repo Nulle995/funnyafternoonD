@@ -1,0 +1,13 @@
+.main-flex {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.main-flex nav {
+  
+}
+.ul-nav {
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
