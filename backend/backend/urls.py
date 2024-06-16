@@ -11,4 +11,6 @@ urlpatterns = [
     path("planes/", include("planes.urls")),
     path("inscripciones/", include("inscripciones.urls")),
     path("asistencia/", include("asistencia.urls")),
+    path("transacciones/", include("transacciones.urls")),
+    path("eventos/", include("eventos.urls")),
 ]

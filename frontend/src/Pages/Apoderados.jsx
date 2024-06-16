@@ -45,28 +45,34 @@ const Apoderados = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Apoderados</h1>
+    <div className="apoderados-body">
+      <header>
+        <h1>Apoderados</h1>
+        <div className="apoderados-busqueda">
+          <FilteredSearch
+            list={filtered}
+            setList={setFiltered}
+            originalList={apoderados}
+            filterBy={filterBy}
+            placeHolder="Busca por nombre o rut..."
+          />
+
+          {/* <select
+            name=""
+            id=""
+            defaultValue="nombre_completo"
+            onChange={(e) => {
+              setFilterBy(e.target.value);
+              console.log(e.target.value);
+            }}
+          >
+            <option value={"nombre_completo"}>Nombre completo</option>
+            <option value={"rut"}>RUT</option>
+          </select> */}
+        </div>
+      </header>
       <hr />
-      <FilteredSearch
-        list={filtered}
-        setList={setFiltered}
-        originalList={apoderados}
-        filterBy={filterBy}
-        placeHolder="Busca por nombre"
-      />
-      <select
-        name=""
-        id=""
-        defaultValue="nombre_completo"
-        onChange={(e) => {
-          setFilterBy(e.target.value);
-          console.log(e.target.value);
-        }}
-      >
-        <option value={"nombre_completo"}>Nombre completo</option>
-        <option value={"rut"}>RUT</option>
-      </select>
+
       <section>
         <ul className="lista-apoderados">
           {filtered &&

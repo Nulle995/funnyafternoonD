@@ -1,3 +1,44 @@
+.apoderados-body header{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 0;
+  & {
+    h1 {
+      margin: 0;
+    }
+  }
+}
+
+.apoderados-busqueda {
+  color: green;
+  width: 100%;
+}
+
+.apoderados-busqueda input{
+  font-size: 1.1rem;
+  background-color: rgb(243, 243, 243);
+  border: 1px solid #d8d8d8;
+  padding: 0.5rem 0rem 0.5rem 1rem;
+  border-radius: 8px;
+  height: 100%;
+  width: 60%;
+}
+
+.apoderados-busqueda input::placeholder {
+  color: rgb(150, 150, 150);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.apoderados-busqueda select {
+  font-size: 1.1rem;
+  border: 0;
+  padding: 0.5rem 0;
+  border-radius: 0 8px 8px 0px;
+}
+
 .lista-apoderados {
   display: grid;
   gap: .5rem;
@@ -14,6 +55,7 @@
   padding: .5rem ;
   list-style: none;
   border-radius: var(--list-border-radius);
+  background-color: white;
 }
 
 
@@ -47,7 +89,7 @@
 }
 
 .apoderado .nombre {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--primary-text-color);
   font-weight: 500;
 }
@@ -58,13 +100,14 @@
 }
 
 .apoderado .secundario {
-  font-size: .9rem;
-  color: var(--secondary-text-color);
-  font-weight: 100;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.783);
+  font-weight: 400;
 }
 
 .apoderado-detalle {
   transition: .2s ease all;
+  display: flex;
 }
 /* 
 .apoderado-detalle .detalle-data {
@@ -72,24 +115,32 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 } */
 
+
 .apoderado-detalle .detalle-data {
-  display: flex;
   gap: 1rem;
 }
+.detalle-data h1 {
+  font-size: 1rem;
+  margin: 0;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+
 
 .detalle-data .inscripciones {
   border-radius: var(--list-border-radius);
-  border: 1px solid #ccc;
-  background-color: rgb(10 32 157);
-  color: var(--t-text-color);
+  /* background-color: rgb(10 28 131); */
+  /* color: var(--t-text-color); */
   max-width: fit-content;
-  padding: .5rem;
+  box-sizing: border-box;
+  
 }
 
 .detalle-data .inscripciones h1 {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .detalle-data .inscripciones table {
@@ -98,16 +149,25 @@
 }
 
 .detalle-data .inscripciones table thead th {
-  font-size: 1rem;
+  font-size: .95rem;
   font-weight: 500;
   padding: 0 1rem 0 0;
-
+  color:rgba(0, 0, 0, 0.74);
 }
 
 .detalle-data .inscripciones table th,td{
 }
 
-.detalle-data .inscripciones-table {
+.detalle-data .inscripciones-table tr {
+  font-size: .95rem;
+}
+
+.detalle-data .inscripciones-table tr:nth-child(odd){
+  background-color: rgb(239 238 255);
+}
+
+.detalle-data .inscripciones-table tr:nth-child(even){
+  background-color: rgb(222, 220, 251);
 }
 
 .detalle-data .inscripciones .inscripciones-table .inscripcion td {
@@ -161,5 +221,84 @@
 
 .plan-detalle {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+}
+.apoderado-detalle {
+  & {
+    .detalle-flex {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .detalle-estudiantes {
+      display: flex;
+    }
+    .nuevo-estudiante {
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+      color: rgb(36 30 213);
+    }
+    .nuevo-estudiante a{
+      margin-left: 4px;
+      color: rgb(36 30 213);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nuevo-estudiante a:hover {
+      text-decoration: underline solid 1px rgb(36 30 213);
+    }
+  }
+}
+
+.apoderado-list-estudiante {
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  /* display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+
+  list-style: none;
+  margin-top: .5rem;
+  background-color: white;
+}
+
+.apoderado-item-estudiante {
+  margin: 0rem 0rem 1rem 0rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background-color: rgb(239 238 255);
+  padding: .5rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.apoderado-item-estudiante img {
+  max-height: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.apoderado-item-estudiante .estudiante-box {
+}
+
+.apoderado-item-estudiante .estudiante-info {
+  min-width: 26ch; 
+  font-weight: 200;
+  color: black;
+  width: 100%;
+  & {
+    .nombre-completo {
+      font-size: 1.1rem;
+      font-weight: 500;
+      min-width: 100%;
+    }
+    .plan-detalle p {
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.783);
+    }
+  }
 }

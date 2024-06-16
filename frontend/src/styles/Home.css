@@ -1,0 +1,50 @@
+.main-home {
+  display: grid;
+  margin-top: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  height: min-content;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+  grid-column: 1/2;
+}
+
+.dashboard-box {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #e7e7e770;
+}
+
+.dashboard-box h2 {
+  margin: 0;
+  font-size: 2.4rem;
+  color: rgb(31 61 234);
+}
+
+.dashboard-box h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dashboard-charts {
+  max-width: 100%;
+}
+
+.dashboard-charts .chart {
+  height: 100%;
+}
+
+.dashboard-charts .chart canvas {
+}
+
+.dashboard-charts .calendar {
+  background-color: blue;
+}
