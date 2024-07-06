@@ -8,6 +8,7 @@ import Apoderados from "./Pages/Apoderados";
 import Estudiante from "./Pages/Estudiante";
 import Asistencia from "./Pages/Asistencia";
 import "./styles/App.css";
+import Transacciones from "./Pages/Transacciones";
 
 function App() {
   return (
@@ -70,6 +71,14 @@ function App() {
           element={
             <Nav>
               <Acceso />
+            </Nav>
+          }
+        />
+        <Route
+          path="/transacciones/"
+          element={
+            <Nav>
+              <Transacciones />
             </Nav>
           }
         />
