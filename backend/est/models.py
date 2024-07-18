@@ -9,7 +9,7 @@ class Estudiante(models.Model):
     tercer_nombre = models.CharField(max_length=30, blank=True, null=True)
     primer_apellido = models.CharField(max_length=40)
     segundo_apellido = models.CharField(max_length=40)
-    rut = models.CharField(max_length=20)
+    rut = models.CharField(max_length=20, unique=True)
     fecha_nacimiento = models.DateField()
     apoderado = models.ForeignKey(
         Apoderado, on_delete=models.CASCADE, related_name="estudiantes"
