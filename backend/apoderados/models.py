@@ -8,9 +8,9 @@ class Apoderado(models.Model):
     tercer_nombre = models.CharField(max_length=30, blank=True, null=True)
     primer_apellido = models.CharField(max_length=30)
     segundo_apellido = models.CharField(max_length=30)
-    rut = models.CharField(max_length=30)
-    telefono = models.CharField(max_length=12)
-    email = models.EmailField()
+    rut = models.CharField(max_length=30, unique=True)
+    telefono = models.CharField(max_length=12, unique=True)
+    email = models.EmailField(unique=True)
     fecha_nacimiento = models.DateField()
 
     def __str__(self):

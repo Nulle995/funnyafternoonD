@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "sonner";
 import { APIToken } from "../api";
+import Header from "../components/Header.jsx";
+import "../styles/Asistencia.css";
 const Asistencia = () => {
   const [estudiantes, setEstudiantes] = useState(null);
   const [presentes, setPresentes] = useState([]);
@@ -82,33 +84,43 @@ const Asistencia = () => {
   }, [reload]);
   return (
     <div>
-      <Toaster richColors />
-      Asistencia{" "}
-      {disponibles.map((est) => (
+      <Header title="Asistencia" placeHolder="busca" list={[]} setList={[]} />
+
+      <section className="asistencia">
         <div>
-          {est.nombre_completo}{" "}
-          <button onClick={() => handleClick(est.pk)}>+</button>
+          <h2>Presentes</h2>
+          {presentes.map((est) => {
+            const inscripcion = est.inscripciones.find((inscripcion) =>
+              inscripcion.activa === true ? inscripcion : null
+            );
+            const ultAsistencia = inscripcion
+              ? inscripcion.asistencias.find((asistencia) =>
+                  asistencia.fecha === fullDate ? asistencia : null
+                )
+              : [];
+            const asistenciaId = ultAsistencia ? ultAsistencia.pk : null;
+            console.log(asistenciaId);
+            return (
+              <div>
+                {est.nombre_completo}{" "}
+                <button onClick={() => handleAsistencia(asistenciaId)}>
+                  -
+                </button>
+              </div>
+            );
+          })}
         </div>
-      ))}
-      <h2>Presentes</h2>
-      {presentes.map((est) => {
-        const inscripcion = est.inscripciones.find((inscripcion) =>
-          inscripcion.activa === true ? inscripcion : null
-        );
-        const ultAsistencia = inscripcion
-          ? inscripcion.asistencias.find((asistencia) =>
-              asistencia.fecha === fullDate ? asistencia : null
-            )
-          : [];
-        const asistenciaId = ultAsistencia ? ultAsistencia.pk : null;
-        console.log(asistenciaId);
-        return (
-          <div>
-            {est.nombre_completo}{" "}
-            <button onClick={() => handleAsistencia(asistenciaId)}>-</button>
-          </div>
-        );
-      })}
+        <Toaster richColors />
+        <div>
+          <h1>Asistencia</h1>
+          {disponibles.map((est) => (
+            <div>
+              {est.nombre_completo}{" "}
+              <button onClick={() => handleClick(est.pk)}>+</button>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

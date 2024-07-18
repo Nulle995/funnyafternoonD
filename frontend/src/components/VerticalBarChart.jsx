@@ -18,16 +18,21 @@ ChartJS.register(
   Legend
 );
 
-export function VerticalBarChart({ ChartData }) {
+export function VerticalBarChart({ ChartData, ChartData2 = null }) {
   const options = { responsive: true, maintainAspectRatio: false };
   const data = {
-    labels: ChartData.map((item) => item.title),
+    labels: Object.keys(ChartData),
     datasets: [
       {
-        label: ChartData.map((item) => item.qty),
-        data: ChartData.map((item) => item.qty),
-        backgroundColor: "#141414",
+        label: "Ingresos",
+        data: Object.values(ChartData),
+        backgroundColor: "lightblue",
         borderWidth: 1,
+      },
+      {
+        label: "Egresos",
+        data: Object.values(ChartData2),
+        backgroundColor: "salmon",
       },
     ],
   };

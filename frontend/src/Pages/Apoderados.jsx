@@ -4,6 +4,7 @@ import { APIToken } from "../api";
 import ListApoderado from "../components/ListApoderado";
 import { UserContext } from "../contexts/UserContext";
 import FilteredSearch from "../components/FilteredSearch";
+import Header from "../components/Header";
 
 const Apoderados = () => {
   const [apoderados, setApoderados] = useState(null);
@@ -46,7 +47,15 @@ const Apoderados = () => {
 
   return (
     <div className="apoderados-body">
-      <header>
+      <Header
+        title={"Apoderados"}
+        placeHolder={"Busca por nombre o rut..."}
+        list={filtered}
+        setList={setFiltered}
+        originalList={apoderados}
+        filterBy={filterBy}
+      />
+      {/* <header>
         <h1>Apoderados</h1>
         <div className="apoderados-busqueda">
           <FilteredSearch
@@ -57,21 +66,9 @@ const Apoderados = () => {
             placeHolder="Busca por nombre o rut..."
           />
 
-          {/* <select
-            name=""
-            id=""
-            defaultValue="nombre_completo"
-            onChange={(e) => {
-              setFilterBy(e.target.value);
-              console.log(e.target.value);
-            }}
-          >
-            <option value={"nombre_completo"}>Nombre completo</option>
-            <option value={"rut"}>RUT</option>
-          </select> */}
+         
         </div>
-      </header>
-      <hr />
+      </header> */}
 
       <section>
         <ul className="lista-apoderados">

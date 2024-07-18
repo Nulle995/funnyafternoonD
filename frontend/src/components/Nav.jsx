@@ -37,6 +37,7 @@ const Nav = ({ children }) => {
         <header>
           <h1>FunnyAfternoon</h1>
         </header>
+        <hr />
         <ul className="ul-nav">
           {links.map((link) => {
             const { to, icon, text } = link;

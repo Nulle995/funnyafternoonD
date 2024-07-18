@@ -70,6 +70,7 @@ const FormEstudiante = () => {
               id="primer_nombre"
               value={formData.primer_nombre}
               onChange={handleChange}
+              required
             />
             <label htmlFor="segundo_nombre">
               Segundo Nombre<span>*</span>
@@ -79,6 +80,7 @@ const FormEstudiante = () => {
               id="segundo_nombre"
               value={formData.segundo_nombre}
               onChange={handleChange}
+              required
             />
             <label htmlFor="tercer_nombre">Primer Nombre</label>
             <input
@@ -95,6 +97,7 @@ const FormEstudiante = () => {
               id="primer_apellido"
               value={formData.primer_apellido}
               onChange={handleChange}
+              required
             />
             <label htmlFor="segundo_apellido">
               Segundo Apellido<span>*</span>
@@ -104,6 +107,7 @@ const FormEstudiante = () => {
               id="segundo_apellido"
               value={formData.segundo_apellido}
               onChange={handleChange}
+              required
             />
             <label htmlFor="rut">
               RUT<span>*</span>
@@ -113,6 +117,7 @@ const FormEstudiante = () => {
               id="rut"
               value={formData.rut}
               onChange={handleChange}
+              required
             />
             <label htmlFor="fecha_nacimiento">
               Fecha de Nacimiento<span>*</span>
@@ -122,6 +127,7 @@ const FormEstudiante = () => {
               id="fecha_nacimiento"
               value={formData.fecha_nacimiento}
               onChange={handleChange}
+              required
             />
             <button>Agregar Estudiante</button>
           </form>

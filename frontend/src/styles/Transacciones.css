@@ -1,0 +1,80 @@
+.form-transaccion{
+  display: grid;
+  font-size: 1.2rem;
+  & {
+    input {
+      font-size: 1.1rem;
+    }
+    select {
+      font-size: 1.1rem;
+    }
+    option {
+      font-size: 1rem;
+    }
+  }
+}
+
+.transacciones-list {
+
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  & {
+    .list {
+      margin: 0;
+      padding: .5rem 1rem;
+    }
+    .list > * {
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .list li {
+      padding: .75rem 0;
+      color: hsl(240 3.8% 45%);
+    }
+
+    .list-headers {
+      display: grid;
+      grid-template-columns: .75fr 1fr .5fr 1.5fr 1fr 1fr .5fr;
+      gap: 1rem;
+      text-align: left;
+      color: hsl(240, 3%, 41%);
+      font-weight: 600;
+    }
+    .list-trans {
+      display: grid;
+      grid-template-columns: .75fr 1fr .5fr 1.5fr 1fr 1fr .5fr;
+      font-size: .95rem;
+      gap: 1rem;
+      & {
+        .fecha {
+        }
+        .categoria{
+
+        }
+        .monto {
+          text-align: right;
+          font-weight: 500
+        }
+        .desc {
+
+        }
+        .apoderado {
+
+        }
+        .evento {
+
+        }
+        .tipo {
+          
+        }
+        
+        ;
+      }
+    }
+  }
+}
+
+.list-trans:hover {
+  
+    background-color: hsl(240,4.8%,95.9%, 60%)
+}

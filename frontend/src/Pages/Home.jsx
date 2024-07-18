@@ -1,5 +1,6 @@
 import FormApoderado from "../components/FormApoderado";
 import { VerticalBarChart } from "../components/VerticalBarChart";
+import useChartDataHook from "../hooks/useChartDataHook";
 import "../styles/Home.css";
 
 const DashboardBox = ({ title, desc }) => {
@@ -13,13 +14,106 @@ const DashboardBox = ({ title, desc }) => {
 
 const Home = () => {
   const data = [
-    { title: "20-26-2", qty: 130 },
-    { title: "20-21-2", qty: 180 },
-    { title: "20-25-2", qty: 210 },
-    { title: "20-27-2", qty: 120 },
-    { title: "20-26-2", qty: 100 },
-    { title: "20-26-2", qty: 170 },
+    {
+      fecha: "2024-05-15",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "25000",
+      desc: "Pago estudiante aslsk",
+      apoderado: 5,
+      evento: null,
+      creado_en: "2024-06-14T18:44:43.543665-03:00",
+      actualizado_en: "2024-06-14T18:44:43.543665-03:00",
+    },
+    {
+      fecha: "2024-02-18",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "50000",
+      desc: "sdfdsfsadf",
+      apoderado: 9,
+      evento: null,
+      creado_en: "2024-06-15T17:53:57.577081-03:00",
+      actualizado_en: "2024-06-15T17:53:57.577081-03:00",
+    },
+    {
+      fecha: "2024-05-15",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "27000",
+      desc: "Pago estudiante aslsk",
+      apoderado: 5,
+      evento: null,
+      creado_en: "2024-06-14T18:44:43.543665-03:00",
+      actualizado_en: "2024-06-14T18:44:43.543665-03:00",
+    },
+    {
+      fecha: "2024-08-15",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "27000",
+      desc: "Pago estudiante aslsk",
+      apoderado: 5,
+      evento: null,
+      creado_en: "2024-06-14T18:44:43.543665-03:00",
+      actualizado_en: "2024-06-14T18:44:43.543665-03:00",
+    },
   ];
+  const a = {};
+  // console.log(data);
+
+  const data2 = [
+    {
+      fecha: "2024-05-15",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "21000",
+      desc: "Pago estudiante aslsk",
+      apoderado: 5,
+      evento: null,
+      creado_en: "2024-06-14T18:44:43.543665-03:00",
+      actualizado_en: "2024-06-14T18:44:43.543665-03:00",
+    },
+    {
+      fecha: "2024-02-18",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "30000",
+      desc: "sdfdsfsadf",
+      apoderado: 9,
+      evento: null,
+      creado_en: "2024-06-15T17:53:57.577081-03:00",
+      actualizado_en: "2024-06-15T17:53:57.577081-03:00",
+    },
+    {
+      fecha: "2024-05-15",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "7000",
+      desc: "Pago estudiante aslsk",
+      apoderado: 5,
+      evento: null,
+      creado_en: "2024-06-14T18:44:43.543665-03:00",
+      actualizado_en: "2024-06-14T18:44:43.543665-03:00",
+    },
+    {
+      fecha: "2024-08-15",
+      tipo_transaccion: "Ingreso",
+      categoria: "Pago de Plan",
+      monto: "21000",
+      desc: "Pago estudiante aslsk",
+      apoderado: 5,
+      evento: null,
+      creado_en: "2024-06-14T18:44:43.543665-03:00",
+      actualizado_en: "2024-06-14T18:44:43.543665-03:00",
+    },
+  ];
+
+  const obj = useChartDataHook(data, 6);
+  const obj2 = useChartDataHook(data2, 6);
+  console.log(obj);
+  console.log(Object.keys(obj));
+  console.log(Object.values(obj));
   return (
     <main className="main-home">
       <section className="dashboard-stats">
@@ -30,7 +124,7 @@ const Home = () => {
       </section>
       <section className="dashboard-charts">
         <div className="chart">
-          <VerticalBarChart ChartData={data} />
+          <VerticalBarChart ChartData={obj} ChartData2={obj2} />
         </div>
       </section>
       {/* <FormApoderado /> */}
