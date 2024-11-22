@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { IoMdSchool } from "react-icons/io";
+import Dialog from "./Dialog";
+import { APIToken } from "../api";
+import { Toaster, toast } from "sonner";
 
 const ListApoderado = ({ apoderado, isVisible, onClick }) => {
   const {
@@ -11,7 +14,50 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
     telefono,
     estudiantes,
   } = apoderado;
+  const [est, setEst] = useState(estudiantes);
   const [inscripciones, setInscripciones] = useState([]);
+
+  const handleSubmit = async (e) => {
+    console.log(formData);
+    e.preventDefault();
+    try {
+      const res = await APIToken.post("estudiantes/", formData);
+      const data = res.data;
+      setEst((prev) => [data, ...prev]);
+      toggleDialog();
+      toast.success("Se añadió el nuevo Estudiante");
+    } catch (e) {
+      console.log(e.response.data.rut);
+      toast.error("Hubo un error al añadir Estudiante!");
+    }
+  };
+
+  const [formData, setFormData] = useState({
+    primer_nombre: "",
+    segundo_nombre: "",
+    tercer_nombre: "",
+    primer_apellido: "",
+    segundo_apellido: "",
+    rut: "",
+    fecha_nacimiento: "",
+    apoderado: apoderado.pk,
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+    console.log(formData);
+  };
+
+  const dialogRef = useRef(null);
+
+  const toggleDialog = (e) => {
+    if (!dialogRef.current) return;
+
+    dialogRef.current.hasAttribute("open")
+      ? dialogRef.current.close()
+      : dialogRef.current.showModal();
+  };
 
   useEffect(() => {
     let nuevasInscripciones = [];
@@ -61,19 +107,103 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
       <div
         className={`apoderado-detalle ${isVisible ? "visible" : "no-visible"}`}
       >
+        <Toaster richColors />
         <div className="detalle-flex">
           <div className="apoderado-list-estudiante">
             <div className="flex">
               <h1>Inscritos</h1>
               <div className="nuevo-estudiante">
-                <Link to={`/apoderados/${apoderado.pk}/estudiantes/crear/`}>
+                <button onClick={toggleDialog} id="nuevo-estudiante">
                   Agregar Estudiante
-                </Link>
+                </button>
+                <Dialog ref={dialogRef} toggleDialog={toggleDialog}>
+                  <p>{apoderado.nombre_completo}</p>
+                  <p>Nuevo estudiante</p>
+                  <form onSubmit={(e) => handleSubmit(e)} id="form">
+                    <label htmlFor="primer_nombre">
+                      Primer Nombre<span>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="primer_nombre"
+                      value={formData.primer_nombre}
+                      onChange={handleChange}
+                      required
+                      placeholder="Damián, Pedro, Pablo..."
+                    />
+                    <label htmlFor="segundo_nombre">
+                      Segundo Nombre<span>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="segundo_nombre"
+                      value={formData.segundo_nombre}
+                      onChange={handleChange}
+                      required
+                      placeholder="Damián, Pedro, Pablo..."
+                    />
+                    <label htmlFor="tercer_nombre">Tercer Nombre</label>
+                    <input
+                      type="text"
+                      id="tercer_nombre"
+                      value={formData.tercer_nombre}
+                      onChange={handleChange}
+                      placeholder="Damián, Pedro, Pablo..."
+                    />
+                    <label htmlFor="primer_apellido">
+                      Primer Apellido<span>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="primer_apellido"
+                      value={formData.primer_apellido}
+                      onChange={handleChange}
+                      required
+                      placeholder="Piña, Avendaño, Ampuero..."
+                    />
+                    <label htmlFor="segundo_apellido">
+                      Segundo Apellido<span>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="segundo_apellido"
+                      value={formData.segundo_apellido}
+                      onChange={handleChange}
+                      required
+                      placeholder="Piña, Avendaño, Ampuero..."
+                    />
+                    <label htmlFor="rut">
+                      RUT<span>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="rut"
+                      value={formData.rut}
+                      onChange={handleChange}
+                      required
+                      placeholder="19235467-k"
+                    />
+                    <label htmlFor="fecha_nacimiento">
+                      Fecha de Nacimiento<span>*</span>
+                    </label>
+                    <input
+                      type="date"
+                      id="fecha_nacimiento"
+                      value={formData.fecha_nacimiento}
+                      onChange={handleChange}
+                      required
+                    />
+                    <button type="submit">Agregar Estudiante</button>
+                  </form>
+                </Dialog>
+                {/* <Link to={`/apoderados/${apoderado.pk}/estudiantes/crear/`}>
+                  Agregar Estudiante
+                </Link> */}
               </div>
             </div>
             <div>
-              {apoderado?.estudiantes.length >= 1 ? (
-                estudiantes.map((estudiante) => {
+              {[est].length >= 1 ? (
+                est.map((estudiante) => {
                   const inscripcionActiva = estudiante.inscripciones.filter(
                     (inscripcion) => inscripcion.activa === true
                   );
@@ -107,7 +237,10 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
                             );
                           })
                         ) : (
-                          <div>No hay planes activos</div>
+                          <div className="plan-detalle">
+                            <p>No hay planes activos</p>
+                            <button>Agregar plan</button>
+                          </div>
                         )}
                         {/* <div>
                       <Link to={`/estudiantes/${estudiante.pk}`}>

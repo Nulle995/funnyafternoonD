@@ -8,7 +8,7 @@ class EstudianteSerializer(serializers.ModelSerializer):
     inscripciones = InscripcionSerializer(
         source="estudiante", many=True, read_only=True
     )
-    apoderado = ApoderadoSerializer(read_only=True)
+    apoderado_detalle = ApoderadoSerializer(read_only=True, source="apoderado")
     nombre_completo = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
@@ -23,6 +23,7 @@ class EstudianteSerializer(serializers.ModelSerializer):
             "rut",
             "fecha_nacimiento",
             "apoderado",
+            "apoderado_detalle",
             "inscripciones",
             "nombre_completo",
         ]

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework_simplejwt",
     "django_extensions",
+    "drf_spectacular",
     "apoderados",
     "asistencia",
     "est",
@@ -140,7 +141,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Funny Afternoon API",
+    "DESCRIPTION": "API para gestión de guardería con Apoderados, Estudiantes, Planes, Inscripciones, Asistencias, Transacciones, Eventos y manejo de errores.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 CORS_ALLOW_ALL_ORIGINS = True

@@ -87,8 +87,18 @@ const Asistencia = () => {
       <Header title="Asistencia" placeHolder="busca" list={[]} setList={[]} />
 
       <section className="asistencia">
-        <div>
-          <h2>Presentes</h2>
+        <Toaster richColors />
+        <div className="disponibles">
+          <h2>Estudiantes Disponibles</h2>
+          {disponibles.map((est) => (
+            <div>
+              {est.nombre_completo}{" "}
+              <button onClick={() => handleClick(est.pk)}>+</button>
+            </div>
+          ))}
+        </div>
+        <div className="presentes">
+          <h2>Estudiantes Presentes</h2>
           {presentes.map((est) => {
             const inscripcion = est.inscripciones.find((inscripcion) =>
               inscripcion.activa === true ? inscripcion : null
@@ -109,16 +119,6 @@ const Asistencia = () => {
               </div>
             );
           })}
-        </div>
-        <Toaster richColors />
-        <div>
-          <h1>Asistencia</h1>
-          {disponibles.map((est) => (
-            <div>
-              {est.nombre_completo}{" "}
-              <button onClick={() => handleClick(est.pk)}>+</button>
-            </div>
-          ))}
         </div>
       </section>
     </div>

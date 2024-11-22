@@ -1,8 +1,15 @@
 import { APIToken } from "../api";
 import { useEffect, useState } from "react";
+import ListEstudiante from "../components/ListEstudiante";
+import Header from "../components/Header";
 
 const Estudiantes = () => {
   const [estudiantes, setEstudiantes] = useState([]);
+  const [visibleIndex, setVisibleIndex] = useState(null);
+
+  const handleClick = (index) => {
+    setVisibleIndex(visibleIndex == index ? null : index);
+  };
 
   useEffect(() => {
     const getEstudiantes = async () => {
@@ -18,11 +25,30 @@ const Estudiantes = () => {
     getEstudiantes();
   }, []);
   return (
-    <div>
-      {estudiantes &&
-        estudiantes.map((est) => {
-          return <div>{est.primer_nombre}</div>;
-        })}
+    <div className="apoderados-body">
+      <Header
+        title={"Estudiantes"}
+        placeHolder={"Busca por nombre..."}
+        list={[]}
+        setList={[]}
+        originalList={[]}
+        filterBy={[]}
+      />
+      <section>
+        <ul className="lista-apoderados">
+          {estudiantes &&
+            estudiantes.map((est) => {
+              return (
+                <ListEstudiante
+                  key={est.pk}
+                  estudiante={est}
+                  onClick={() => handleClick(est.pk)}
+                  isVisible={est.pk == visibleIndex}
+                />
+              );
+            })}
+        </ul>
+      </section>
     </div>
   );
 };

@@ -6,6 +6,7 @@ class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
         fields = [
+            "pk",
             "tipo",
             "descripcion",
             "precio",

@@ -5,7 +5,35 @@ from .serializers import InscripcionSerializer
 
 # Create your views here.
 
+from drf_spectacular.utils import (
+    extend_schema,
+    extend_schema_view,
+    OpenApiParameter,
+    OpenApiExample,
+)
 
+
+@extend_schema_view(
+    post=extend_schema(
+        summary="Crear un registro de inscripción",
+        description=(
+            "Crea un nuevo registro de inscripción para un estudiante. "
+            "Verifica que el estudiante NO tenga una inscripción activa, "
+            "o si la última inscripción está impaga. "
+            "Si no tiene una inscripción activa o el plan no ha sido pagado, "
+            "lanza una excepción."
+        ),
+        responses={
+            201: InscripcionSerializer,
+            400: OpenApiExample(
+                "Error",
+                summary="Error en la creación de la inscripción.",
+                description="Mensaje de error si el estudiante tiene inscripción activa o inscripción impaga.",
+                value={"detail": "El estudiante tiene inscripción activa o impaga."},
+            ),
+        },
+    ),
+)
 class InscripcionListCreateAPIView(generics.ListCreateAPIView):
     queryset = Inscripcion.objects.all()
     serializer_class = InscripcionSerializer

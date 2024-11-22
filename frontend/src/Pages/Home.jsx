@@ -1,6 +1,7 @@
 import FormApoderado from "../components/FormApoderado";
 import { VerticalBarChart } from "../components/VerticalBarChart";
 import useChartDataHook from "../hooks/useChartDataHook";
+import { Helmet } from "react-helmet";
 import "../styles/Home.css";
 
 const DashboardBox = ({ title, desc }) => {
@@ -116,6 +117,9 @@ const Home = () => {
   console.log(Object.values(obj));
   return (
     <main className="main-home">
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <section className="dashboard-stats">
         <DashboardBox title="25" desc="Estudiantes Presentes" />
         <DashboardBox title="49" desc="Estudiantes Ausentes" />

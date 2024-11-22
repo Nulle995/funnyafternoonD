@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from apoderados.models import Apoderado
 from eventos.models import Evento
 
@@ -26,7 +27,9 @@ class Transaccion(models.Model):
     fecha = models.DateField()
     tipo_transaccion = models.CharField(max_length=8, choices=TIPO_TRANSACCION_CHOICES)
     categoria = models.CharField(max_length=16, choices=CATEGORIA_CHOICES)
-    monto = models.DecimalField(max_digits=30, decimal_places=2)
+    monto = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999999999)]
+    )
     desc = models.CharField(max_length=200, blank=True, null=True)
     apoderado = models.ForeignKey(
         Apoderado, on_delete=models.CASCADE, blank=True, null=True

@@ -6,7 +6,55 @@ from django.utils import timezone
 from .models import Asistencia
 from .serializers import AsistenciaSerializer
 from inscripciones.models import Inscripcion
+from drf_spectacular.utils import (
+    extend_schema,
+    extend_schema_view,
+    OpenApiParameter,
+    OpenApiExample,
+)
 
+
+@extend_schema_view(
+    post=extend_schema(
+        summary="Crear un registro de asistencia",
+        description=(
+            "Crea un nuevo registro de asistencia para un estudiante. "
+            "Verifica que el estudiante tenga una inscripción activa. "
+            "Si no tiene una inscripción activa o el plan ha terminado, "
+            "lanza una excepción."
+        ),
+        parameters=[
+            OpenApiParameter(
+                name="estudiante",
+                description="ID del estudiante para el cual se crea el registro de asistencia",
+                required=True,
+                type=int,
+                location=OpenApiParameter.QUERY,
+                examples=[
+                    OpenApiExample(
+                        "Ejemplo de ID de estudiante",
+                        summary="ID de estudiante",
+                        value=1,
+                    )
+                ],
+            )
+        ],
+        responses={
+            201: AsistenciaSerializer,
+            400: OpenApiExample(
+                "Error",
+                summary="Error en la creación de la asistencia",
+                description="Mensaje de error si el estudiante no tiene inscripción activa o el plan ha terminado.",
+                value={"detail": "No hay inscripción activa para este estudiante."},
+            ),
+        },
+    ),
+    get=extend_schema(
+        summary="Listar registros de asistencia",
+        description="Obtiene una lista de todos los registros de asistencia.",
+        responses={200: AsistenciaSerializer(many=True)},
+    ),
+)
 
 # Create your views here.
 class AsistenciaListCreateAPIView(generics.ListCreateAPIView):

@@ -10,5 +10,16 @@
   gap: 8px;
   padding: .2rem 0;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: #04c;
+  transition: .1s ease-in;
+  &:hover {
+    color: rgb(0, 68, 160);
+    text-decoration: underline 1px solid rgb(0, 68, 160);
+  }
+
+  & svg {
+    color: #04c;
+
+  }
 }

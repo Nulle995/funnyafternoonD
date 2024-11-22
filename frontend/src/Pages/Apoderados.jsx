@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import "../styles/Apoderados.css";
-import { APIToken } from "../api";
+import { APIToken, API } from "../api";
 import ListApoderado from "../components/ListApoderado";
 import { UserContext } from "../contexts/UserContext";
 import FilteredSearch from "../components/FilteredSearch";
@@ -55,6 +55,7 @@ const Apoderados = () => {
         originalList={apoderados}
         filterBy={filterBy}
       />
+      <button className="btn-agregar">Nuevo Apoderado</button>
       {/* <header>
         <h1>Apoderados</h1>
         <div className="apoderados-busqueda">

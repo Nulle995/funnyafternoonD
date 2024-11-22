@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { API, APIToken } from "../api";
+import { Toaster, toast } from "sonner";
 import Dialog from "../components/Dialog";
 import Transaccion from "../components/Transaccion";
 import "../styles/Transacciones.css";
@@ -15,11 +16,48 @@ const Transacciones = () => {
       ? dialogRef.current.close()
       : dialogRef.current.showModal();
   };
+
+  const [formData, setFormData] = useState({
+    fecha: "",
+    tipo_transaccion: "Ingreso",
+    categoria: "Pago de Plan",
+    monto: "",
+    desc: "",
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await API.post("transacciones/", formData);
+      const data = res.data;
+      setTrans((prev) => [data, ...prev]);
+      toast.success("Transacción añdadida exitosamente.");
+    } catch (e) {
+      toast.error(e.message);
+    } finally {
+      toggleDialog();
+    }
+  };
+
+  const handleDelete = async (pk) => {
+    try {
+      const res = await APIToken.delete(`transacciones/${pk}/delete/`);
+      const data = res.data;
+      const newTrans = trans.filter((trans) => trans.pk !== pk);
+      setTrans(newTrans);
+      toast.success("Transaccion eliminada");
+    } catch (e) {}
+  };
+
   useEffect(() => {
     const getTransacciones = async () => {
       const res = await API.get("transacciones/");
       const data = res.data;
-      console.log(data);
       setTrans(data);
     };
     getTransacciones();
@@ -34,27 +72,64 @@ const Transacciones = () => {
         setList={setTrans}
       />
 
-      <button onClick={toggleDialog}>Nueva Transacción</button>
+      <button className="btn-agregar" onClick={toggleDialog}>
+        Nueva Transacción
+      </button>
       <Dialog ref={dialogRef} toggleDialog={toggleDialog}>
-        <form action="" className="form-transaccion">
+        <form action="" className="form-transaccion" onSubmit={handleSubmit}>
           <label htmlFor="fecha">Fecha: </label>
-          <input type="date" id="fecha" required />
-          <label htmlFor="tipo">Tipo: </label>
-          <select name="" id="tipo" defaultValue="Ingreso" required>
+          <input
+            type="date"
+            id="fecha"
+            required
+            value={formData.fecha}
+            onChange={handleChange}
+          />
+          <label htmlFor="tipo_transaccion">Tipo: </label>
+          <select
+            name=""
+            id="tipo_transaccion"
+            defaultValue="Ingreso"
+            required
+            value={formData.tipo}
+            onChange={handleChange}
+          >
             <option value="Ingreso">Ingreso</option>
             <option value="Egreso">Egreso</option>
           </select>
           <label htmlFor="categoria">Categoría: </label>
-          <select name="" id="categoria" defaultValue="Pago de Plan" required>
+          <select
+            name=""
+            id="categoria"
+            defaultValue="Pago de Plan"
+            required
+            value={formData.categoria}
+            onChange={handleChange}
+          >
             <option value="Pago de Plan">Pago de Plan</option>
             <option value="Utensilios">Utensilios</option>
             <option value="Arriendo Local">Arriendo Local</option>
             <option value="Servicio">Servicio</option>
           </select>
           <label htmlFor="monto">Monto: </label>
-          <input type="number" name="" id="monto" required />
+          <input
+            type="number"
+            name=""
+            id="monto"
+            required
+            value={formData.monto}
+            onChange={handleChange}
+            placeholder="150000"
+          />
           <label htmlFor="desc">Desc: </label>
-          <input type="text" id="desc" />
+          <input
+            type="text"
+            id="desc"
+            value={formData.desc}
+            onChange={handleChange}
+            placeholder="Pago de luz"
+          />
+          <button type="sumbit">Guardar</button>
         </form>
       </Dialog>
       <div className="transacciones-list">
@@ -63,18 +138,21 @@ const Transacciones = () => {
             <div className="list-headers">
               <p>Fecha</p>
               <p>Categoría</p>
-              <p className="monto">Monto</p>
+              <p>Monto</p>
               <p>Descripción</p>
               <p>Apoderado</p>
               <p>Evento</p>
               <p>Acciones</p>
             </div>
             {trans.map((transs) => {
-              return <Transaccion transs={transs} />;
+              return (
+                <Transaccion transs={transs} handleDelete={handleDelete} />
+              );
             })}
           </ul>
         )}
       </div>
+      <Toaster richColors />
     </div>
   );
 };

@@ -7,9 +7,10 @@ import Acceso from "./Pages/Acceso";
 import Apoderados from "./Pages/Apoderados";
 import Estudiante from "./Pages/Estudiante";
 import Asistencia from "./Pages/Asistencia";
+import Eventos from "./Pages/Eventos";
 import "./styles/App.css";
 import Transacciones from "./Pages/Transacciones";
-
+import { Helmet } from "react-helmet";
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,9 @@ function App() {
           element={
             <Nav>
               <Apoderados />
+              <Helmet>
+                <title>Apoderados</title>
+              </Helmet>
             </Nav>
           }
         />
@@ -46,6 +50,9 @@ function App() {
           path="/estudiantes/"
           element={
             <Nav>
+              <Helmet>
+                <title>Estudiantes</title>
+              </Helmet>
               <Estudiantes />
             </Nav>
           }
@@ -63,6 +70,9 @@ function App() {
           element={
             <Nav>
               <Asistencia />
+              <Helmet>
+                <title>Asistencia</title>
+              </Helmet>
             </Nav>
           }
         />
@@ -71,6 +81,9 @@ function App() {
           element={
             <Nav>
               <Acceso />
+              <Helmet>
+                <title>Acceso</title>
+              </Helmet>
             </Nav>
           }
         />
@@ -79,6 +92,20 @@ function App() {
           element={
             <Nav>
               <Transacciones />
+              <Helmet>
+                <title>Transacciones</title>
+              </Helmet>
+            </Nav>
+          }
+        />
+        <Route
+          path="/eventos/"
+          element={
+            <Nav>
+              <Eventos />
+              <Helmet>
+                <title>Eventos</title>
+              </Helmet>
             </Nav>
           }
         />
