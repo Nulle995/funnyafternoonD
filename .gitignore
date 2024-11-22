@@ -1,0 +1,30 @@
+# Dependencias de Node.js
+node_modules/
+
+# Archivos de build de React
+build/
+
+# Archivos de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Entornos virtuales
+venv/
+env/
+
+# Archivos de migración de Django (opcional)
+*.sqlite3
+db.sqlite3
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+# Logs y archivos temporales
+*.log
+*.tmp
+.DS_Store
+
+# Llaves y secretos
+.env
