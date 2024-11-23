@@ -34,7 +34,7 @@ const Acceso = () => {
 
   return (
     <div>
-      <Header />
+      <Header title={"Acceso"} />
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Nombre de Usuario: </label>
         <input
