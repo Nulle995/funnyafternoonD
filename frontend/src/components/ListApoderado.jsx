@@ -202,7 +202,7 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
               </div>
             </div>
             <div>
-              {[est].length >= 1 ? (
+              {est.length >= 1 ? (
                 est.map((estudiante) => {
                   const inscripcionActiva = estudiante.inscripciones.filter(
                     (inscripcion) => inscripcion.activa === true

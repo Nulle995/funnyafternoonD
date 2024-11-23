@@ -29,6 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", default="secret23423")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = "RENDER" not in os.environ
 
+
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") or [
 #     "http://localhost:5173",
 #     "http://127.0.0.1:8000",
