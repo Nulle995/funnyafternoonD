@@ -74,39 +74,49 @@ const Apoderados = () => {
             type="text"
             id="primer_nombre"
             placeholder="Damián, Pablo..."
+            required
           />
           <label htmlFor="segundo_nombre">Segundo Nombre*</label>
           <input
             type="text"
             id="segundo_nombre"
             placeholder="Damián, Pablo..."
+            required
           />
           <label htmlFor="tercer_nombre">Tercer Nombre</label>
           <input
             type="text"
             id="tercer_nombre"
             placeholder="Damián, Pablo..."
+            required
           />
           <label htmlFor="primer_apellido">Primer Apellido*</label>
           <input
             type="text"
             id="primer_apellido"
             placeholder="Navarro, Vásquez..."
+            required
           />
           <label htmlFor="segundo_apellido">Segundo Apellido*</label>
           <input
             type="text"
             id="segundo_apellido"
             placeholder="Navarro, Vásquez..."
+            required
           />
           <label htmlFor="email">Email*</label>
-          <input type="text" id="email" placeholder="d.navarro@gmail.com" />
+          <input
+            type="text"
+            id="email"
+            placeholder="d.navarro@gmail.com"
+            required
+          />
           <label htmlFor="tel">Teléfono*</label>
-          <input type="text" id="tel" placeholder="+56912345678" />
+          <input type="text" id="tel" placeholder="+56912345678" required />
           <label htmlFor="rut">RUT*</label>
-          <input type="text" id="rut" placeholder="19.254.351-7" />
+          <input type="text" id="rut" placeholder="19.254.351-7" required />
           <label htmlFor="fecha_nacimiento">Fecha de Nacimiento*</label>
-          <input type="date" id="fecha_nacimiento" />
+          <input type="date" id="fecha_nacimiento" required />
           <div>
             <button type="submit">Aceptar</button>
             <button type="button">Cancelar</button>

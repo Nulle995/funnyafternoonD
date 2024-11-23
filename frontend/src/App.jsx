@@ -20,6 +20,9 @@ function App() {
           element={
             <Nav>
               <Home />
+              <Helmet>
+                <title>Home</title>
+              </Helmet>
             </Nav>
           }
         />

@@ -3,6 +3,7 @@ import { VerticalBarChart } from "../components/VerticalBarChart";
 import useChartDataHook from "../hooks/useChartDataHook";
 import { Helmet } from "react-helmet";
 import "../styles/Home.css";
+import Header from "../components/Header";
 
 const DashboardBox = ({ title, desc }) => {
   return (
@@ -117,20 +118,18 @@ const Home = () => {
   console.log(Object.values(obj));
   return (
     <main className="main-home">
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
+      <Header title={"Home"} />
       <section className="dashboard-stats">
         <DashboardBox title="25" desc="Estudiantes Presentes" />
         <DashboardBox title="49" desc="Estudiantes Ausentes" />
         <DashboardBox title="74" desc="Planes Activos" />
         <DashboardBox title="1" desc="Evento Agendado" />
       </section>
-      <section className="dashboard-charts">
+      {/* <section className="dashboard-charts">
         <div className="chart">
           <VerticalBarChart ChartData={obj} ChartData2={obj2} />
         </div>
-      </section>
+      </section> */}
       {/* <FormApoderado /> */}
     </main>
   );

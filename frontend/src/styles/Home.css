@@ -1,6 +1,6 @@
 .main-home {
-  display: grid;
-  margin-top: 1rem;
+  /* display: grid; */
+  /* margin-top: 1rem; */
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   height: min-content;
