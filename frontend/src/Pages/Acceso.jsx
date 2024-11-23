@@ -3,6 +3,7 @@ import { API } from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { UserContext } from "../contexts/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header.jsx";
 const Acceso = () => {
   const { reload, setReload } = useContext(UserContext);
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Acceso = () => {
 
   return (
     <div>
+      <Header />
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Nombre de Usuario: </label>
         <input
