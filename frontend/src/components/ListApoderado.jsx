@@ -270,7 +270,7 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
                   <th>Estado</th>
                 </thead>
                 <tbody className="inscripciones-table">
-                  {inscripciones.length > 1 ? (
+                  {inscripciones.length > 0 ? (
                     inscripciones.map((inscripcion) => {
                       return (
                         <tr className="inscripcion">
