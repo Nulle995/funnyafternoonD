@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext, useRef } from "react";
-import "../styles/Apoderados.css";
 import { APIToken, API } from "../api";
 import ListApoderado from "../components/ListApoderado";
 import { UserContext } from "../contexts/UserContext";
 import FilteredSearch from "../components/FilteredSearch";
 import Header from "../components/Header";
 import Dialog from "../components/Dialog";
+import "../styles/Apoderados.css";
+import "../styles/Dialog.css";
 
 const Apoderados = () => {
   const [apoderados, setApoderados] = useState(null);
