@@ -266,9 +266,6 @@
     .nuevo-estudiante:hover button {
     color: #fbfbfb;
     }
-    .nuevo-estudiante > dialog > div > form > *{
-      display: block;
-    }
 }
 
 .apoderado-list-estudiante {

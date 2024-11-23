@@ -1,0 +1,17 @@
+.dialog {
+  padding: 0;
+  & .children {
+    padding: 1rem;
+    & {
+      form > input {
+        display: block;
+      }
+
+      form > div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
