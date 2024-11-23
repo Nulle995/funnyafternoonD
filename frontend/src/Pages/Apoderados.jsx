@@ -64,7 +64,9 @@ const Apoderados = () => {
         originalList={apoderados}
         filterBy={filterBy}
       />
-      <button className="btn-agregar">Nuevo Apoderado</button>
+      <button className="btn-agregar" onClick={toggleDialog}>
+        Nuevo Apoderado
+      </button>
       <Dialog ref={dialogRef} toggleDialog={toggleDialog}>
         <form action="">
           <label htmlFor="primer_nombre">Primer Nombre*</label>
