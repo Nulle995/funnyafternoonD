@@ -204,9 +204,41 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
             <div>
               {est.length >= 1 ? (
                 est.map((estudiante) => {
-                  const inscripcionActiva = estudiante.inscripciones.filter(
-                    (inscripcion) => inscripcion.activa === true
-                  );
+                  const [inscripcionActiva, setInscripcionActiva] =
+                    estudiante.inscripciones.filter(
+                      (inscripcion) => inscripcion.activa === true
+                    );
+                  const formRef = useRef(null);
+                  const dialogPlanRef = useRef(null);
+                  const togglePlanDialog = () => {
+                    if (!dialogPlanRef.current) return;
+
+                    dialogPlanRef.current.hasAttribute("open")
+                      ? dialogPlanRef.current.close()
+                      : dialogPlanRef.current.showModal();
+                  };
+                  const handlePlanSubmit = async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(formRef.current);
+                    formData.append("estudiante", estudiante.pk);
+                    const objectFormData = Object.fromEntries(
+                      formData.entries()
+                    );
+                    if (objectFormData.fecha_fin === "") {
+                      objectFormData.fecha_fin = null;
+                    }
+                    try {
+                      const res = await APIToken.post(
+                        "inscripciones/",
+                        objectFormData
+                      );
+                      const data = res.data;
+                      setInscripcionActiva([data]);
+                      setInscripciones((prev) => [data, ...prev]);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  };
                   return (
                     <li
                       key={estudiante.pk}
@@ -239,7 +271,67 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
                         ) : (
                           <div className="plan-detalle">
                             <p>No hay planes activos</p>
-                            <button>Agregar plan</button>
+                            <button onClick={togglePlanDialog}>
+                              Agregar plan
+                            </button>
+                            <Dialog
+                              ref={dialogPlanRef}
+                              toggleDialog={togglePlanDialog}
+                            >
+                              <p>Estudiante: </p>
+                              <p>{estudiante.nombre_completo}</p>
+                              <p>Nueva Inscripción</p>
+                              <form
+                                onSubmit={handlePlanSubmit}
+                                ref={formRef}
+                                style={{
+                                  display: "grid",
+                                  justifyItems: "left",
+                                }}
+                              >
+                                <label htmlFor="plan">
+                                  Plan<span>*</span>
+                                </label>
+                                <select id="plan" name="plan" required>
+                                  <option value={2}>Diario</option>
+                                  <option value={1}>Semanal</option>
+                                  <option value={3}>Mensual</option>
+                                </select>
+                                <label htmlFor="fecha_inicio">
+                                  Fecha Inicio <span>*</span>
+                                </label>
+                                <input
+                                  type="date"
+                                  id="fecha_inicio"
+                                  name="fecha_inicio"
+                                  required
+                                />
+                                <label htmlFor="fecha_fin">Fecha Fin</label>
+                                <input
+                                  type="date"
+                                  id="fecha_fin"
+                                  name="fecha_fin"
+                                />
+                                <label htmlFor="pagado">Pagado</label>
+                                <input
+                                  type="checkbox"
+                                  id="pagado"
+                                  name="pagado"
+                                />
+
+                                <div style={{ display: "flex", gap: "1rem" }}>
+                                  <button type="submit">
+                                    Agregar Estudiante
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={togglePlanDialog}
+                                  >
+                                    Cancelar
+                                  </button>
+                                </div>
+                              </form>
+                            </Dialog>
                           </div>
                         )}
                         {/* <div>
