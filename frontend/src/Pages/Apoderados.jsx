@@ -116,7 +116,6 @@ const Apoderados = () => {
             id="tercer_nombre"
             name="tercer_nombre"
             placeholder="Damián, Pablo..."
-            required
           />
           <label htmlFor="primer_apellido">Primer Apellido*</label>
           <input
