@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import { APIToken, API } from "../api";
+import { Toaster, toast } from "sonner";
 import ListApoderado from "../components/ListApoderado";
 import { UserContext } from "../contexts/UserContext";
 import FilteredSearch from "../components/FilteredSearch";
@@ -15,8 +16,29 @@ const Apoderados = () => {
   const [visibleIndex, setVisibleIndex] = useState(null);
   const { reload, setReload } = useContext(UserContext);
   const dialogRef = useRef(null);
+  const formRef = useRef(null);
+
   const handleClick = (index) => {
     setVisibleIndex(index == visibleIndex ? null : index);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    try {
+      const res = await APIToken.post("apoderados/", formData);
+      const data = res.data;
+      setFiltered((prev) => [data, ...prev]);
+      toast.success("Apoderado creado exitosamente!");
+      toggleDialog();
+    } catch (e) {
+      if (e.response) {
+        const errorData = Object.keys(e.response.data).join(", ");
+        toast.error(`Error al crear Apoderado en: ${errorData}`);
+      } else {
+        toast.error("Error en el servidor. Intente más tarde.");
+      }
+    }
   };
 
   const toggleDialog = () => {
@@ -64,11 +86,12 @@ const Apoderados = () => {
         originalList={apoderados}
         filterBy={filterBy}
       />
+      <Toaster richColors />
       <button className="btn-agregar" onClick={toggleDialog}>
         Nuevo Apoderado
       </button>
       <Dialog ref={dialogRef} toggleDialog={toggleDialog}>
-        <form action="">
+        <form action="" ref={formRef} onSubmit={handleSubmit}>
           <label htmlFor="primer_nombre">Primer Nombre*</label>
           <input
             type="text"
