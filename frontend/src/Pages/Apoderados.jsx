@@ -26,7 +26,6 @@ const Apoderados = () => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data2 = Object.fromEntries(formData.entries());
-    console.log(data2);
 
     try {
       const res = await APIToken.post("apoderados/", formData);
@@ -99,6 +98,7 @@ const Apoderados = () => {
           <input
             type="text"
             id="primer_nombre"
+            name="primer_nombre"
             placeholder="Damián, Pablo..."
             required
           />
@@ -106,6 +106,7 @@ const Apoderados = () => {
           <input
             type="text"
             id="segundo_nombre"
+            name="segundo_nombre"
             placeholder="Damián, Pablo..."
             required
           />
@@ -113,6 +114,7 @@ const Apoderados = () => {
           <input
             type="text"
             id="tercer_nombre"
+            name="tercer_nombre"
             placeholder="Damián, Pablo..."
             required
           />
@@ -120,6 +122,7 @@ const Apoderados = () => {
           <input
             type="text"
             id="primer_apellido"
+            name="primer_apellido"
             placeholder="Navarro, Vásquez..."
             required
           />
@@ -127,6 +130,7 @@ const Apoderados = () => {
           <input
             type="text"
             id="segundo_apellido"
+            name="segundo_apellido"
             placeholder="Navarro, Vásquez..."
             required
           />
@@ -134,15 +138,33 @@ const Apoderados = () => {
           <input
             type="text"
             id="email"
+            name="email"
             placeholder="d.navarro@gmail.com"
             required
           />
           <label htmlFor="tel">Teléfono*</label>
-          <input type="text" id="tel" placeholder="+56912345678" required />
+          <input
+            type="text"
+            id="tel"
+            name="telefono"
+            placeholder="+56912345678"
+            required
+          />
           <label htmlFor="rut">RUT*</label>
-          <input type="text" id="rut" placeholder="19.254.351-7" required />
+          <input
+            type="text"
+            id="rut"
+            name="rut"
+            placeholder="19.254.351-7"
+            required
+          />
           <label htmlFor="fecha_nacimiento">Fecha de Nacimiento*</label>
-          <input type="date" id="fecha_nacimiento" required />
+          <input
+            type="date"
+            id="fecha_nacimiento"
+            name="fecha_nacimiento"
+            required
+          />
           <div>
             <button type="submit">Aceptar</button>
             <button type="button" onClick={toggleDialog}>
