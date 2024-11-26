@@ -25,6 +25,9 @@ const Apoderados = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
+    const data2 = Object.fromEntries(formData.entries());
+    console.log(data2);
+
     try {
       const res = await APIToken.post("apoderados/", formData);
       const data = res.data;
@@ -142,7 +145,9 @@ const Apoderados = () => {
           <input type="date" id="fecha_nacimiento" required />
           <div>
             <button type="submit">Aceptar</button>
-            <button type="button">Cancelar</button>
+            <button type="button" onClick={toggleDialog}>
+              Cancelar
+            </button>
           </div>
         </form>
       </Dialog>
