@@ -322,7 +322,7 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
 
                                 <div style={{ display: "flex", gap: "1rem" }}>
                                   <button type="submit">
-                                    Agregar Estudiante
+                                    Agregar Inscripción
                                   </button>
                                   <button
                                     type="button"
