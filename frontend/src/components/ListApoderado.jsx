@@ -204,10 +204,11 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
             <div>
               {est.length >= 1 ? (
                 est.map((estudiante) => {
-                  const [inscripcionActiva, setInscripcionActiva] =
+                  const [inscripcionActiva, setInscripcionActiva] = useState(
                     estudiante.inscripciones.filter(
                       (inscripcion) => inscripcion.activa === true
-                    );
+                    )
+                  );
                   const formRef = useRef(null);
                   const dialogPlanRef = useRef(null);
                   const togglePlanDialog = () => {
