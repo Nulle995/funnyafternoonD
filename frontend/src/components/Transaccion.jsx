@@ -17,7 +17,9 @@ const Transaccion = ({ transs, handleDelete }) => {
     desc,
     monto,
     apoderado,
+    apoderado_desc,
     evento,
+    evento_desc,
     tipo_transaccion,
   } = transs;
   const formattedPrice = formatPrice(monto);
@@ -69,11 +71,11 @@ const Transaccion = ({ transs, handleDelete }) => {
         </div>
         <div className="apoderado">
           <span className="data">Apoderado: </span>
-          {apoderado ? apoderado.nombre_completo : "---"}
+          {apoderado ? apoderado_desc.nombre_completo : "---"}
         </div>
         <div className="evento">
           <span className="data">Evento: </span>
-          {evento ? evento.nombre : "---"}
+          {evento ? evento_desc.nombre : "---"}
         </div>
         <div className="acciones">
           <span className="data">Acciones: </span>
