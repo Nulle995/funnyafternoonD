@@ -29,8 +29,8 @@ class EventoTransaccionSerializer(serializers.ModelSerializer):
 
 
 class TransaccionSerializer(serializers.ModelSerializer):
-    apoderado = ApoderadoTransaccionSerializer(read_only=True)
-    evento = EventoTransaccionSerializer(read_only=True)
+    apoderado_desc = ApoderadoTransaccionSerializer(read_only=True)
+    evento_desc = EventoTransaccionSerializer(read_only=True)
 
     class Meta:
         model = Transaccion
@@ -42,7 +42,9 @@ class TransaccionSerializer(serializers.ModelSerializer):
             "monto",
             "desc",
             "apoderado",
+            "apoderado_desc",
             "evento",
+            "evento_desc",
             "creado_en",
             "actualizado_en",
         ]
