@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Toaster, toast } from "sonner";
 
 import Header from "../components/Header";
@@ -9,6 +9,7 @@ import Dialog from "../components/Dialog.jsx";
 import { APIToken } from "../api.js";
 
 const Eventos = () => {
+  const [eventos, setEventos] = useState(null);
   const dialogRef = useRef(null);
   const formRef = useRef(null);
   const toggleDialog = () => {
@@ -27,6 +28,7 @@ const Eventos = () => {
     try {
       const res = await APIToken.post("eventos/", objectFormData);
       const data = await res.data;
+      toast.success("Transacción añadida exitosamente!");
       // console.log(data);
 
       // const transaccionInfo = {
@@ -47,8 +49,23 @@ const Eventos = () => {
       // console.log(dataTransaccion);
     } catch (e) {
       console.log(e);
+      toast.error("Ocurrió algún error al agregar la Transacción.");
     }
   };
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await APIToken.get("eventos/");
+        const data = res.data;
+        setEventos(data);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getData();
+  }, []);
 
   const data = [
     {
@@ -134,9 +151,9 @@ const Eventos = () => {
         </form>
       </Dialog>
       <section className="eventos">
-        {data &&
-          data.map((evento) => {
-            const { nombre, desc, monto, fecha } = evento;
+        {eventos &&
+          eventos.map((evento) => {
+            const { nombre, desc, monto, fecha_inicio } = evento;
             return (
               <article>
                 <div className="top">
@@ -145,7 +162,7 @@ const Eventos = () => {
                 </div>
                 <div className="bottom">
                   <p>💸 {formatPrice(monto)}</p>
-                  <p>📅 {formatDate("2024-06-14")}</p>
+                  <p>📅 {formatDate(fecha_inicio)}</p>
                 </div>
               </article>
             );

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -8,7 +9,9 @@ class Evento(models.Model):
     fecha_fin = models.DateField()
     cliente = models.CharField(max_length=255)
     desc = models.TextField(null=True, blank=True)
-    monto = models.DecimalField(max_digits=12, decimal_places=2)
+    monto = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(999999999)]
+    )
     creado_en = models.DateTimeField(auto_now_add=True)
     actualizado_en = models.DateTimeField(auto_now=True)
 
