@@ -6,6 +6,7 @@ class EventoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evento
         fields = [
+            "pk",
             "nombre",
             "fecha_inicio",
             "fecha_fin",
