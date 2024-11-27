@@ -36,7 +36,7 @@ const Transacciones = () => {
       const res = await API.post("transacciones/", formData);
       const data = res.data;
       setTrans((prev) => [data, ...prev]);
-      toast.success("Transacción añdadida exitosamente.");
+      toast.success("Transacción añadida exitosamente.");
     } catch (e) {
       toast.error(e.message);
     } finally {
