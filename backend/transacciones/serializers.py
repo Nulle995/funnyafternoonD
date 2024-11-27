@@ -29,8 +29,8 @@ class EventoTransaccionSerializer(serializers.ModelSerializer):
 
 
 class TransaccionSerializer(serializers.ModelSerializer):
-    apoderado_desc = ApoderadoTransaccionSerializer(read_only=True)
-    evento_desc = EventoTransaccionSerializer(read_only=True)
+    apoderado_desc = ApoderadoTransaccionSerializer(read_only=True, source="apoderado")
+    evento_desc = EventoTransaccionSerializer(read_only=True, source="evento")
 
     class Meta:
         model = Transaccion
