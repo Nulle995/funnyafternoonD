@@ -1,4 +1,10 @@
 .eventos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: .5rem;
+  & article {
+    padding: 0 1rem;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 4px;
+  }
 }
