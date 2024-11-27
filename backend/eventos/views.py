@@ -13,6 +13,7 @@ class EventoListCreateAPIView(generics.ListCreateAPIView):
         evento = serializer.save()
         transaccion = Transaccion.objects.create(
             fecha=evento.fecha_inicio,
+            desc=evento.desc,
             tipo_transaccion="Ingreso",
             categoria="Arriendo Local",
             monto=evento.monto,

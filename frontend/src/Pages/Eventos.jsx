@@ -27,24 +27,24 @@ const Eventos = () => {
     try {
       const res = await APIToken.post("eventos/", objectFormData);
       const data = await res.data;
-      console.log(data);
+      // console.log(data);
 
-      const transaccionInfo = {
-        fecha: objectFormData.fecha_inicio,
-        tipo_transaccion: "Ingreso",
-        categoria: "Arriendo Local",
-        monto: objectFormData.monto,
-        desc: objectFormData.desc,
-        evento: res.data.pk,
-      };
-      console.log(transaccionInfo);
+      // const transaccionInfo = {
+      //   fecha: objectFormData.fecha_inicio,
+      //   tipo_transaccion: "Ingreso",
+      //   categoria: "Arriendo Local",
+      //   monto: objectFormData.monto,
+      //   desc: objectFormData.desc,
+      //   evento: res.data.pk,
+      // };
+      // console.log(transaccionInfo);
 
-      const resTransaccion = await APIToken.post(
-        "transacciones/",
-        transaccionInfo
-      );
-      const dataTransaccion = resTransaccion.data;
-      console.log(dataTransaccion);
+      // const resTransaccion = await APIToken.post(
+      //   "transacciones/",
+      //   transaccionInfo
+      // );
+      // const dataTransaccion = resTransaccion.data;
+      // console.log(dataTransaccion);
     } catch (e) {
       console.log(e);
     }
