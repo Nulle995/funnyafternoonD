@@ -47,6 +47,18 @@ const ListEstudiante = ({ estudiante, onClick, isVisible }) => {
     }
   };
 
+  const handleClick = (pk) => {
+    try {
+      const res = APIToken.patch(`inscripciones/${pk}/update/`, {
+        pagado: true,
+      });
+      const data = res.data;
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <li className="apoderado-item">
       <div className="apoderado" onClick={onClick}>
