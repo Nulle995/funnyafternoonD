@@ -131,7 +131,18 @@ const ListEstudiante = ({ estudiante, onClick, isVisible }) => {
                     <p>{insc.plan_detalle.descripcion}</p>
                     <p>{insc.dias_asistidos} Días asistidos</p>
                     <p>{insc.activa ? "Activa" : "Inactiva"}</p>
-                    <p>{insc.pagado ? "Pagado" : "Impago"}</p>
+                    <p>
+                      {insc.pagado ? (
+                        "Pagado"
+                      ) : (
+                        <div>
+                          Impago{" "}
+                          <button onClick={() => handleClick(insc.pk)}>
+                            Pagar
+                          </button>
+                        </div>
+                      )}
+                    </p>
                   </div>
                 ))
               : "No hay inscripciones"}
