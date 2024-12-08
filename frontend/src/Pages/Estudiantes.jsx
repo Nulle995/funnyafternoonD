@@ -5,6 +5,8 @@ import Header from "../components/Header";
 
 const Estudiantes = () => {
   const [estudiantes, setEstudiantes] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [filterBy, setFilterBy] = useState("nombre_completo");
   const [visibleIndex, setVisibleIndex] = useState(null);
 
   const handleClick = (index) => {
@@ -17,6 +19,7 @@ const Estudiantes = () => {
         const res = await APIToken.get("estudiantes/");
         const data = res.data;
         setEstudiantes(data);
+        setFiltered(data);
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -29,15 +32,15 @@ const Estudiantes = () => {
       <Header
         title={"Estudiantes"}
         placeHolder={"Busca por nombre..."}
-        list={[]}
-        setList={[]}
-        originalList={[]}
-        filterBy={[]}
+        list={filtered}
+        setList={setFiltered}
+        originalList={estudiantes}
+        filterBy={filterBy}
       />
       <section>
         <ul className="lista-apoderados">
-          {estudiantes &&
-            estudiantes.map((est) => {
+          {filtered &&
+            filtered.map((est) => {
               return (
                 <ListEstudiante
                   key={est.pk}

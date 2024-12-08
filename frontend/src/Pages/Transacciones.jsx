@@ -8,6 +8,8 @@ import "../styles/Transacciones.css";
 import Header from "../components/Header";
 const Transacciones = () => {
   const [trans, setTrans] = useState(null);
+  const [filtered, setFiltered] = useState([]);
+  const [filterBy, setFilterBy] = useState("categoria");
   const dialogRef = useRef(null);
   const toggleDialog = (e) => {
     if (!dialogRef.current) return;
@@ -59,6 +61,7 @@ const Transacciones = () => {
       const res = await API.get("transacciones/");
       const data = res.data;
       setTrans(data);
+      setFiltered(data);
     };
     getTransacciones();
   }, []);
@@ -68,8 +71,10 @@ const Transacciones = () => {
       <Header
         title={"Transacciones"}
         placeHolder={"Categoría..."}
-        list={trans}
-        setList={setTrans}
+        list={filtered}
+        setList={setFiltered}
+        originalList={trans}
+        filterBy={filterBy}
       />
 
       <button className="btn-agregar" onClick={toggleDialog}>
@@ -144,7 +149,7 @@ const Transacciones = () => {
               <p>Evento</p>
               <p>Acciones</p>
             </div>
-            {trans.map((transs) => {
+            {filtered.map((transs) => {
               return (
                 <Transaccion transs={transs} handleDelete={handleDelete} />
               );

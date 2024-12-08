@@ -9,9 +9,7 @@ const FilteredSearch = ({
     const { value } = e.target;
     const newList = originalList.filter((val) => {
       console.log(val);
-      return `${val["nombre_completo"].toLowerCase()}`.includes(
-        value.toLowerCase()
-      );
+      return `${val[filterBy].toLowerCase()}`.includes(value.toLowerCase());
     });
     setList(newList);
     console.log(list);

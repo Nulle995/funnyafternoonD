@@ -10,6 +10,8 @@ import { APIToken } from "../api.js";
 
 const Eventos = () => {
   const [eventos, setEventos] = useState(null);
+  const [filtered, setFiltered] = useState([]);
+  const [filterBy, setFilterBy] = useState("nombre");
   const dialogRef = useRef(null);
   const formRef = useRef(null);
   const toggleDialog = () => {
@@ -59,6 +61,7 @@ const Eventos = () => {
         const res = await APIToken.get("eventos/");
         const data = res.data;
         setEventos(data);
+        setFiltered(data);
         console.log(data);
       } catch (e) {
         console.log(e);
@@ -107,7 +110,13 @@ const Eventos = () => {
   ];
   return (
     <div className="apoderados-body">
-      <Header title={"Eventos"} />
+      <Header
+        title={"Eventos"}
+        list={filtered}
+        setList={setFiltered}
+        originalList={eventos}
+        filterBy={filterBy}
+      />
       <button className="btn-agregar" onClick={toggleDialog}>
         Nuevo Evento
       </button>
@@ -151,8 +160,8 @@ const Eventos = () => {
         </form>
       </Dialog>
       <section className="eventos">
-        {eventos &&
-          eventos.map((evento) => {
+        {filtered &&
+          filtered.map((evento) => {
             const { nombre, desc, monto, fecha_inicio } = evento;
             return (
               <article>
