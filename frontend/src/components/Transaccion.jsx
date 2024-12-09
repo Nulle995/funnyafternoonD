@@ -111,7 +111,7 @@ const Transaccion = ({ transs, handleDelete }) => {
         </div>
         <div className="acciones">
           <span className="data">Acciones: </span>
-          <button>
+          <button onClick={toggleEditDialog}>
             <div className="hover-data">Editar</div>
             <FaEdit />
           </button>
