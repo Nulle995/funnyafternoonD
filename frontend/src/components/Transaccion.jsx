@@ -56,6 +56,15 @@ const Transaccion = ({ transs, handleDelete }) => {
       : editDialogRef.current.showModal();
   };
 
+  const toggleCloseDialog = () => {
+    setTipoTransaccion(estadoTransaccion);
+    setFecha(estadoFecha);
+    setCategoria(estadoCategoria);
+    setDesc(estadoDesc);
+    setMonto(estadoMonto);
+    toggleEditDialog();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -121,7 +130,7 @@ const Transaccion = ({ transs, handleDelete }) => {
           </button>
         </div>
         <Toaster richColors />
-        <Dialog ref={editDialogRef} toggleDialog={toggleEditDialog}>
+        <Dialog ref={editDialogRef} toggleDialog={toggleCloseDialog}>
           <form action="" onSubmit={handleSubmit} style={{ display: "grid" }}>
             <label htmlFor="fecha">Fecha: </label>
             <input
@@ -171,17 +180,7 @@ const Transaccion = ({ transs, handleDelete }) => {
             </select>
             <div>
               <button>Aceptar</button>
-              <button
-                type="button"
-                onClick={() => {
-                  setTipoTransaccion(estadoTransaccion);
-                  setFecha(estadoFecha);
-                  setCategoria(estadoCategoria);
-                  setDesc(estadoDesc);
-                  setMonto(estadoMonto);
-                  toggleEditDialog();
-                }}
-              >
+              <button type="button" onClick={toggleCloseDialog}>
                 Cancelar
               </button>
             </div>
