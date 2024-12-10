@@ -5,7 +5,7 @@ import { toast, Toaster } from "sonner";
 import formatDate from "../utils/formatDate";
 import formatPrice from "../utils/formatPrice";
 import Dialog from "./Dialog";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Transaccion = ({ transs, handleDelete }) => {
   const {
@@ -26,6 +26,14 @@ const Transaccion = ({ transs, handleDelete }) => {
   const [categoria, setCategoria] = useState(estadoCategoria);
   const [desc, setDesc] = useState(estadoDesc);
   const [monto, setMonto] = useState(estadoMonto);
+
+  useEffect(() => {
+    setTipoTransaccion(estadoTransaccion);
+    setFecha(estadoFecha);
+    setCategoria(estadoCategoria);
+    setDesc(estadoDesc);
+    setMonto(estadoMonto);
+  }, [transs]);
 
   const formattedPrice = formatPrice(monto);
   const formattedDate = formatDate(fecha);
