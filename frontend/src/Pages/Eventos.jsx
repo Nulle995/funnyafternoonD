@@ -1,5 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Toaster, toast } from "sonner";
+import { FaEdit } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 
 import Header from "../components/Header";
 import "../styles/Eventos.css";
@@ -7,10 +9,11 @@ import formatPrice from "../utils/formatPrice";
 import formatDate from "../utils/formatDate";
 import Dialog from "../components/Dialog.jsx";
 import { APIToken } from "../api.js";
+import Evento from "../components/Evento.jsx";
 
 const Eventos = () => {
   const [eventos, setEventos] = useState(null);
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState(null);
   const [filterBy, setFilterBy] = useState("nombre");
   const dialogRef = useRef(null);
   const formRef = useRef(null);
@@ -30,45 +33,15 @@ const Eventos = () => {
     try {
       const res = await APIToken.post("eventos/", objectFormData);
       const data = await res.data;
-      toast.success("Transacción añadida exitosamente!");
-      // console.log(data);
-
-      // const transaccionInfo = {
-      //   fecha: objectFormData.fecha_inicio,
-      //   tipo_transaccion: "Ingreso",
-      //   categoria: "Arriendo Local",
-      //   monto: objectFormData.monto,
-      //   desc: objectFormData.desc,
-      //   evento: res.data.pk,
-      // };
-      // console.log(transaccionInfo);
-
-      // const resTransaccion = await APIToken.post(
-      //   "transacciones/",
-      //   transaccionInfo
-      // );
-      // const dataTransaccion = resTransaccion.data;
-      // console.log(dataTransaccion);
+      setEventos((prev) => [data, ...prev]);
     } catch (e) {
       console.log(e);
-      toast.error("Ocurrió algún error al agregar la Transacción.");
     }
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await APIToken.get("eventos/");
-        const data = res.data;
-        setEventos(data);
-        setFiltered(data);
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getData();
-  }, []);
+  const handleNewTrans = async (transaccion) => {
+    console.log(transaccion);
+  };
 
   const data = [
     {
@@ -108,6 +81,22 @@ const Eventos = () => {
       fecha: "05/02/2021",
     },
   ];
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await APIToken.get("eventos/");
+        const data = res.data;
+        setEventos(data);
+        setFiltered(data);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <div className="apoderados-body">
       <Header
@@ -160,22 +149,32 @@ const Eventos = () => {
         </form>
       </Dialog>
       <section className="eventos">
-        {filtered &&
-          filtered.map((evento) => {
-            const { nombre, desc, monto, fecha_inicio } = evento;
-            return (
-              <article>
-                <div className="top">
-                  <h3>{nombre}</h3>
-                  <p>{desc}</p>
-                </div>
-                <div className="bottom">
-                  <p>💸 {formatPrice(monto)}</p>
-                  <p>📅 {formatDate(fecha_inicio)}</p>
-                </div>
-              </article>
-            );
-          })}
+        <article>
+          <div className="top">
+            <h3>Summer Music Festival</h3>
+            <p>
+              A three-day music extravaganza featuring top artists from around
+              the world.
+            </p>
+          </div>
+          <div className="bottom">
+            <div>
+              <p>📅 14/7/2023 - 16/7/2023</p>
+              <p>🕵️‍♂️ City Events Co.</p>
+
+              <p className="monto">$199.99</p>
+            </div>
+            <div className="actions">
+              <button>
+                <FaEdit />
+              </button>
+              <button>
+                <FaTrashCan />
+              </button>
+            </div>
+          </div>
+        </article>
+        {filtered && filtered.map((evento) => <Evento evento={evento} />)}
       </section>
     </div>
   );
