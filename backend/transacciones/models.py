@@ -34,7 +34,13 @@ class Transaccion(models.Model):
     apoderado = models.ForeignKey(
         Apoderado, on_delete=models.CASCADE, blank=True, null=True
     )
-    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, null=True, blank=True)
+    evento = models.ForeignKey(
+        Evento,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="transacciones",
+    )
     creado_en = models.DateTimeField(auto_now_add=True)
     actualizado_en = models.DateTimeField(auto_now=True)
 

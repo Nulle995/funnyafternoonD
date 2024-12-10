@@ -19,3 +19,13 @@ class EventoListCreateAPIView(generics.ListCreateAPIView):
             monto=evento.monto,
             evento=evento,
         )
+
+
+class EventoUpdateAPIView(generics.UpdateAPIView):
+    queryset = Evento.objects.all()
+    serializer_class = EventoSerializer
+
+
+class EventoDeleteAPIView(generics.DestroyAPIView):
+    queryset = Evento.objects.all()
+    serializer_class = EventoSerializer

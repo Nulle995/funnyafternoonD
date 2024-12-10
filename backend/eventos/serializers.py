@@ -15,6 +15,7 @@ class EventoSerializer(serializers.ModelSerializer):
             "monto",
             "creado_en",
             "actualizado_en",
+            "transacciones",
         ]
         extra_kwargs = {
             "creado_en": {"read_only": True},
