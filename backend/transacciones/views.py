@@ -81,46 +81,6 @@ class InformeMensualView(APIView):
                 if pisa_status.err:
                     return HttpResponse("Error al generar pdf", status=500)
 
-                # p = canvas.Canvas(buffer, pagesize=letter)
-                # width, height = letter
-
-                # # Título del informe
-                # p.setFont("Helvetica-Bold", 16)
-                # p.setFillColor(colors.darkblue)
-                # p.drawString(100, height - 50, f"Informe Mensual - {month}/{year}")
-
-                # # Subtítulo y total
-                # p.setFont("Helvetica", 12)
-                # p.setFillColor(colors.black)
-                # p.drawString(100, height - 80, f"Total: {total} CLP")
-                # p.drawString(100, height - 100, "Transacciones:")
-
-                # # Estilizar las transacciones
-                # y = height - 120
-                # p.setFont("Helvetica", 10)
-                # p.setStrokeColor(colors.gray)
-                # p.setLineWidth(0.5)
-
-                # for transaccion in transacciones:
-                #     # Dibuja una línea debajo de cada transacción
-                #     p.setFillColor(colors.black)
-                #     p.drawString(
-                #         100,
-                #         y,
-                #         f"{transaccion.fecha} | {transaccion.tipo_transaccion} | {transaccion.categoria} | {transaccion.monto}",
-                #     )
-                #     y -= 20
-                #     # Línea separadora
-                #     p.setStrokeColor(colors.lightgrey)
-                #     p.line(90, y + 10, width - 90, y + 10)
-
-                #     if y < 50:  # Salto de página
-                #         p.showPage()
-                #         p.setFont("Helvetica", 10)
-                #         y = height - 50
-
-                # Guardar y retornar el PDF
-                # p.save()
                 buffer.seek(0)
                 response = HttpResponse(buffer, content_type="application/pdf")
 
