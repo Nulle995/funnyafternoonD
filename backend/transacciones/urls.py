@@ -4,6 +4,7 @@ from .views import (
     TransaccionUpdateAPIView,
     TransaccionDeleteAPIView,
     InformeMensualView,
+    InformeUltimoTresMesesView,
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
         name="transaccion-delete",
     ),
     path("informe/mensual/", InformeMensualView.as_view(), name="informe-mensual"),
+    path("informe/3/", InformeUltimoTresMesesView.as_view(), name="informe-3"),
 ]

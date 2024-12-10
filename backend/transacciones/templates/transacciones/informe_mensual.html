@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informe Mensual</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      .summary {
+        margin: 20px 0;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .table th,
+      .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .table th {
+        background-color: #f4f4f4;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Informe Mensual - {{ month }}/{{ year }}</h1>
+    <div class="summary">
+      <p><strong>Total:</strong> {{ total }} CLP</p>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Categoría</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaccion in transacciones %}
+        <tr>
+          <td>{{ transaccion.fecha }}</td>
+          <td>{{ transaccion.tipo_transaccion }}</td>
+          <td>{{ transaccion.categoria }}</td>
+          <td>{{ transaccion.monto }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
