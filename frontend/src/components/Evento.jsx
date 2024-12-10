@@ -4,8 +4,9 @@ import formatPrice from "../utils/formatPrice";
 import { FaEdit } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import Dialog from "./Dialog";
+import { APIToken } from "../api";
 
-const Evento = ({ evento }) => {
+const Evento = ({ evento, onDelete }) => {
   const [nombre, setNombre] = useState(evento.nombre);
   const [desc, setDesc] = useState(evento.desc);
   const [monto, setMonto] = useState(evento.monto);
@@ -36,14 +37,31 @@ const Evento = ({ evento }) => {
       : dialogDeleteRef.current.showModal();
   };
 
-  const handleEdit = async () => {
+  const handleEdit = async (e) => {
+    e.preventDefault();
     try {
+      const res = await APIToken.patch(`eventos/${evento.pk}/update/`, {
+        nombre,
+        desc,
+        monto,
+        fecha_inicio,
+        fecha_fin,
+        monto,
+        cliente,
+      });
+      const data = res.data;
+      console.log(data);
     } catch (e) {
       console.log(e);
+    } finally {
+      toggleDialog();
     }
   };
+  const handleDelete = (pk) => {
+    onDelete(pk);
+    toggleDialogDelete();
+  };
 
-  const handleDelete = () => {};
   return (
     <article>
       <div className="top">
@@ -61,9 +79,11 @@ const Evento = ({ evento }) => {
         </div>
         <div className="actions">
           <button onClick={toggleDialog}>
+            <div className="hover-data">Editar</div>
             <FaEdit />
           </button>
           <button onClick={toggleDialogDelete}>
+            <div className="hover-data">Eliminar</div>
             <FaTrashCan />
           </button>
         </div>
@@ -120,7 +140,9 @@ const Evento = ({ evento }) => {
           />
           <div>
             <button>Aceptar</button>
-            <button>Cancelar</button>
+            <button type="button" onClick={toggleDialog}>
+              Cancelar
+            </button>
           </div>
         </form>
       </Dialog>
@@ -129,8 +151,10 @@ const Evento = ({ evento }) => {
         <p>Cliente: {cliente}</p>
         <p>Monto: {monto}</p>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <button>Aceptar</button>
-          <button>Cancelar</button>
+          <button onClick={() => handleDelete(evento.pk)}>Aceptar</button>
+          <button type="button" onClick={toggleDialogDelete}>
+            Cancelar
+          </button>
         </div>
       </Dialog>
     </article>

@@ -37,7 +37,7 @@ const Transacciones = () => {
     try {
       const res = await API.post("transacciones/", formData);
       const data = res.data;
-      setTrans((prev) => [data, ...prev]);
+      setFiltered((prev) => [data, ...prev]);
       toast.success("Transacción añadida exitosamente.");
     } catch (e) {
       toast.error(e.message);

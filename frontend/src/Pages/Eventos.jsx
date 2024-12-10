@@ -33,12 +33,23 @@ const Eventos = () => {
     try {
       const res = await APIToken.post("eventos/", objectFormData);
       const data = await res.data;
-      setEventos((prev) => [data, ...prev]);
+      setFiltered((prev) => [data, ...prev]);
+      toggleDialog();
     } catch (e) {
       console.log(e);
     }
   };
-
+  const handleDelete = async (pk) => {
+    try {
+      const res = await APIToken.delete(`eventos/${pk}/delete/`);
+      const data = res.data;
+      console.log(data);
+      const newEvents = filtered.filter((evento) => evento.pk !== pk);
+      setFiltered(newEvents);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const handleNewTrans = async (transaccion) => {
     console.log(transaccion);
   };
@@ -149,32 +160,10 @@ const Eventos = () => {
         </form>
       </Dialog>
       <section className="eventos">
-        <article>
-          <div className="top">
-            <h3>Summer Music Festival</h3>
-            <p>
-              A three-day music extravaganza featuring top artists from around
-              the world.
-            </p>
-          </div>
-          <div className="bottom">
-            <div>
-              <p>📅 14/7/2023 - 16/7/2023</p>
-              <p>🕵️‍♂️ City Events Co.</p>
-
-              <p className="monto">$199.99</p>
-            </div>
-            <div className="actions">
-              <button>
-                <FaEdit />
-              </button>
-              <button>
-                <FaTrashCan />
-              </button>
-            </div>
-          </div>
-        </article>
-        {filtered && filtered.map((evento) => <Evento evento={evento} />)}
+        {filtered &&
+          filtered.map((evento) => (
+            <Evento evento={evento} onDelete={handleDelete} />
+          ))}
       </section>
     </div>
   );

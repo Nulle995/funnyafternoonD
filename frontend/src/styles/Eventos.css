@@ -32,7 +32,39 @@
       }
       & .actions {
         padding-bottom: 1rem;
+        & button {
+          border: 0;
+          background-color: transparent;
+          margin: 0;
+          padding: 0;
+          position: relative;
+          height: min-content;
+          cursor: pointer;
+          & .hover-data {
+            display: none;
+            z-index: 1001;
+          }
+          &:hover .hover-data{
+            display: block;
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 4px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 4px 4px 0 0;
+          }
+          & svg {
+            width: 1.2rem;
+            height: 1.2rem;
+
+            
+          }
       }
+    }
     }
   }
 }
