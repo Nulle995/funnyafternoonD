@@ -102,7 +102,7 @@ const ApodEstudiante = ({ estudiante, setInscripciones }) => {
                   <input type="checkbox" id="pagado" name="pagado" />
 
                   <div style={{ display: "flex", gap: "1rem" }}>
-                    <button type="submit">Agregar Plan</button>
+                    <button type="submit">Agregar Inscripción</button>
                     <button type="button" onClick={togglePlanDialog}>
                       Cancelar
                     </button>
