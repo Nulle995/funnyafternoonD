@@ -200,7 +200,7 @@ const Transaccion = ({ transs, handleDelete }) => {
           <p>Categoría: {categoria}</p>
           <p>Descripción: {desc}</p>
           <p>Monto: {monto}</p>
-          <div>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button onClick={handleAlertDelete}>Sí</button>
             <button type="button" onClick={toggleDialog}>
               Cancelar
