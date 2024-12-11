@@ -195,7 +195,7 @@ const Transaccion = ({ transs, handleDelete }) => {
           </form>
         </Dialog>
         <Dialog ref={dialogRef} toggleDialog={toggleDialog}>
-          <p>¿Desea borrar la transaccion?</p>
+          <p>¿Desea borrar la transacción?</p>
           <p>Fecha: {fecha}</p>
           <p>Categoría: {categoria}</p>
           <p>Descripción: {desc}</p>
