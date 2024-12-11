@@ -126,7 +126,7 @@ const Transacciones = () => {
             onChange={handleChange}
             placeholder="150000"
           />
-          <label htmlFor="desc">Desc: </label>
+          <label htmlFor="desc">Descripción: </label>
           <input
             type="text"
             id="desc"
@@ -134,7 +134,12 @@ const Transacciones = () => {
             onChange={handleChange}
             placeholder="Pago de luz"
           />
-          <button type="sumbit">Guardar</button>
+          <div>
+            <button type="sumbit">Guardar</button>
+            <button type="button" onClick={toggleDialog}>
+              Cancelar
+            </button>
+          </div>
         </form>
       </Dialog>
       <div className="transacciones-list">

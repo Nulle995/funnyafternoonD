@@ -130,7 +130,12 @@ const ListEstudiante = ({ estudiante, onClick, isVisible }) => {
                     }
                   />
 
-                  <button type="submit">Agregar Estudiante</button>
+                  <div>
+                    <button type="submit">Agregar Plan</button>
+                    <button type="button" onClick={toggleDialog}>
+                      Cancelar
+                    </button>
+                  </div>
                 </form>
               </Dialog>
             </div>

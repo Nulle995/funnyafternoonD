@@ -193,7 +193,12 @@ const ListApoderado = ({ apoderado, isVisible, onClick }) => {
                       onChange={handleChange}
                       required
                     />
-                    <button type="submit">Agregar Estudiante</button>
+                    <div>
+                      <button type="submit">Agregar Estudiante</button>
+                      <button type="button" onClick={toggleDialog}>
+                        Cancelar
+                      </button>
+                    </div>
                   </form>
                 </Dialog>
                 {/* <Link to={`/apoderados/${apoderado.pk}/estudiantes/crear/`}>

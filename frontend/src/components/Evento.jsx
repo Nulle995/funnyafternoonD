@@ -30,6 +30,17 @@ const Evento = ({ evento, onDelete }) => {
       ? dialogRef.current.close()
       : dialogRef.current.showModal();
   };
+
+  const toggleCloseDialog = () => {
+    setNombre(evento.nombre);
+    setDesc(evento.desc);
+    setMonto(evento.monto);
+    setInicio(evento.fecha_inicio);
+    setFin(evento.fecha_fin);
+    setCliente(evento.cliente);
+    toggleDialog();
+  };
+
   const toggleDialogDelete = () => {
     if (!dialogDeleteRef.current) return;
     dialogDeleteRef.current.hasAttribute("open")
@@ -88,7 +99,7 @@ const Evento = ({ evento, onDelete }) => {
           </button>
         </div>
       </div>
-      <Dialog ref={dialogRef} toggleDialog={toggleDialog}>
+      <Dialog ref={dialogRef} toggleDialog={toggleCloseDialog}>
         <form action="" onSubmit={handleEdit}>
           <label htmlFor="nombre">Nombre: </label>
           <input
@@ -140,7 +151,7 @@ const Evento = ({ evento, onDelete }) => {
           />
           <div>
             <button>Aceptar</button>
-            <button type="button" onClick={toggleDialog}>
+            <button type="button" onClick={toggleCloseDialog}>
               Cancelar
             </button>
           </div>
