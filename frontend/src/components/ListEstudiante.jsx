@@ -131,7 +131,7 @@ const ListEstudiante = ({ estudiante, onClick, isVisible }) => {
                   />
 
                   <div>
-                    <button type="submit">Agregar Plan</button>
+                    <button type="submit">Agregar Inscripción</button>
                     <button type="button" onClick={toggleDialog}>
                       Cancelar
                     </button>
@@ -163,6 +163,25 @@ const ListEstudiante = ({ estudiante, onClick, isVisible }) => {
                   </div>
                 ))
               : "No hay inscripciones"}
+          </div>
+          <div>
+            {inscripciones.length > 0
+              ? inscripciones.map((insc) => {
+                  return (
+                    <div>
+                      <p>
+                        {insc.plan_detalle.descripcion} - {insc.fecha_inicio}
+                      </p>
+                      <div>
+                        <p>Días asistidos:</p>
+                        {insc.asistencias.map((as) => {
+                          return <p>{as.fecha}</p>;
+                        })}
+                      </div>
+                    </div>
+                  );
+                })
+              : "No hay asistencias"}
           </div>
         </div>
       </div>
