@@ -10,6 +10,7 @@ import Asistencia from "./Pages/Asistencia";
 import Eventos from "./Pages/Eventos";
 import "./styles/App.css";
 import Transacciones from "./Pages/Transacciones";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { Helmet } from "react-helmet";
 function App() {
   return (
@@ -18,23 +19,27 @@ function App() {
         <Route
           path="/"
           element={
-            <Nav>
-              <Home />
-              <Helmet>
-                <title>Home</title>
-              </Helmet>
-            </Nav>
+            <ProtectedRoute>
+              <Nav>
+                <Home />
+                <Helmet>
+                  <title>Home</title>
+                </Helmet>
+              </Nav>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/apoderados/"
           element={
-            <Nav>
-              <Apoderados />
-              <Helmet>
-                <title>Apoderados</title>
-              </Helmet>
-            </Nav>
+            <ProtectedRoute>
+              <Nav>
+                <Apoderados />
+                <Helmet>
+                  <title>Apoderados</title>
+                </Helmet>
+              </Nav>
+            </ProtectedRoute>
           }
         />
         <Route
@@ -52,12 +57,14 @@ function App() {
         <Route
           path="/estudiantes/"
           element={
-            <Nav>
-              <Helmet>
-                <title>Estudiantes</title>
-              </Helmet>
-              <Estudiantes />
-            </Nav>
+            <ProtectedRoute>
+              <Nav>
+                <Helmet>
+                  <title>Estudiantes</title>
+                </Helmet>
+                <Estudiantes />
+              </Nav>
+            </ProtectedRoute>
           }
         />
         <Route
@@ -71,12 +78,14 @@ function App() {
         <Route
           path="/asistencia/"
           element={
-            <Nav>
-              <Asistencia />
-              <Helmet>
-                <title>Asistencia</title>
-              </Helmet>
-            </Nav>
+            <ProtectedRoute>
+              <Nav>
+                <Asistencia />
+                <Helmet>
+                  <title>Asistencia</title>
+                </Helmet>
+              </Nav>
+            </ProtectedRoute>
           }
         />
         <Route
@@ -93,23 +102,27 @@ function App() {
         <Route
           path="/transacciones/"
           element={
-            <Nav>
-              <Transacciones />
-              <Helmet>
-                <title>Transacciones</title>
-              </Helmet>
-            </Nav>
+            <ProtectedRoute>
+              <Nav>
+                <Transacciones />
+                <Helmet>
+                  <title>Transacciones</title>
+                </Helmet>
+              </Nav>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/eventos/"
           element={
-            <Nav>
-              <Eventos />
-              <Helmet>
-                <title>Eventos</title>
-              </Helmet>
-            </Nav>
+            <ProtectedRoute>
+              <Nav>
+                <Eventos />
+                <Helmet>
+                  <title>Eventos</title>
+                </Helmet>
+              </Nav>
+            </ProtectedRoute>
           }
         />
       </Routes>
