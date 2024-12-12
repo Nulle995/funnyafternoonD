@@ -5,6 +5,7 @@ from django.db.models import Sum, Case, When, Value, IntegerField, F
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.utils import timezone
+
 from xhtml2pdf import pisa
 from .models import Transaccion
 from .serializers import TransaccionSerializer
