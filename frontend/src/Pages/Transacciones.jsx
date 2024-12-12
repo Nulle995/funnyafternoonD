@@ -50,8 +50,8 @@ const Transacciones = () => {
     try {
       const res = await APIToken.delete(`transacciones/${pk}/delete/`);
       const data = res.data;
-      const newTrans = trans.filter((trans) => trans.pk !== pk);
-      setTrans(newTrans);
+      const newTrans = filtered.filter((trans) => trans.pk !== pk);
+      setFiltered(newTrans);
       toast.success("Transaccion eliminada");
     } catch (e) {}
   };
